@@ -17,6 +17,8 @@
 #ifndef MELTDOWN_H_
 #define MELTDOWN_H_
 
+#include <exception>
+
 // #define MELTDOWN_WINDOWS 1
    #define MELTDOWN_LINUX 1
 // #define MELTDOWN_OSX 1
@@ -31,5 +33,16 @@
    #define MELTDOWN_OPENGL 1
 // #define MELTDOWN_GLES 1
 // #define MELTDOWN_DIRECTX 1
+
+class LimeException: public std::exception
+{
+public:
+    LimeException(const char* msg);
+    virtual ~LimeException() throw();
+
+    const char* what() const throw();
+private:
+    const char* m_msg;
+};
 
 #endif /* MELTDOWN_H_ */

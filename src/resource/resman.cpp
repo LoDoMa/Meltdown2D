@@ -16,21 +16,26 @@
 
 #include "resman.h"
 
-#include <stdio.h>
-#include "../meltdown.h"
+#include <cstdio>
 
+#include "../meltdown.h"
 #include "texture.h"
 #include "sound.h"
 
 ResourceMan::ResourceMan()
 {
-    m_idctr = 0;
+    m_idctr = 1;
 
     printf("resource manager created\n");
 }
 
 ResourceMan::~ResourceMan()
 {
+    std::map<resID, Resource*>::iterator it;
+    for(it = m_resources.begin(); it != m_resources.end(); it++)
+        delete (*it).second;
+    m_resources.clear();
+
     printf("resource manager destroyed\n");
 }
 
@@ -49,6 +54,8 @@ static Sound* newSound(const char* fpath)
 resID ResourceMan::loadResource(ResourceType restype, const char* fpath)
 {
     resID id = m_idctr++;
+    while(m_resources.find(id) != m_resources.end())
+        id = m_idctr++;
 
     Resource* res;
     switch(restype)
@@ -67,5 +74,9 @@ resID ResourceMan::loadResource(ResourceType restype, const char* fpath)
 
 void ResourceMan::unloadResource(resID id)
 {
-
+    std::map<resID, Resource*>::iterator it = m_resources.find(id);
+    if (it == m_resources.end())
+        throw LimeException("failed to unload a resource - resource not found");
+    delete (*it).second;
+    m_resources.erase((*it).first);
 }

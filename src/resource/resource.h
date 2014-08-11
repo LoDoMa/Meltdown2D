@@ -22,9 +22,6 @@ class Resource
 public:
     Resource();
     virtual ~Resource();
-
-    virtual void load();
-    virtual void unload();
 };
 
 #endif /* RESOURCE_H_ */

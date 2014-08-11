@@ -18,6 +18,8 @@
 
 #include <cstdio>
 
+static resID tex1;
+
 Engine::Engine()
 : m_resman(0)
 {
@@ -50,6 +52,9 @@ void Engine::engineInit()
 void Engine::gameInit()
 {
     printf("engine stage - game init - started\n");
+
+    tex1 = m_resman->loadResource(ResourceMan::TEXTURE, "test 1");
+    m_resman->loadResource(ResourceMan::TEXTURE, "test 2");
     
     printf("engine stage - game init - finished\n");
 }
@@ -57,6 +62,8 @@ void Engine::gameInit()
 void Engine::run()
 {
     printf("engine stage - run - started\n");
+
+    m_resman->unloadResource(tex1);
     
     printf("engine stage - run - finished\n");
 }

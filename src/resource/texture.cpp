@@ -16,6 +16,14 @@
 
 #include "texture.h"
 
+#include <cstdio>
+
+Texture::Texture(const char* fpath)
+: m_fpath(fpath)
+{
+
+}
+
 Texture::~Texture()
 {
 
@@ -28,14 +36,19 @@ void Texture::bind()
 
 #if defined(MELTDOWN_OPENGL)
 
-TextureGL::TextureGL(const char* fpath)
+TextureGL::TextureGL(const char* path)
+: Texture(path)
 {
     glGenTextures(1, &m_id);
+
+    printf("loaded texture [%s]\n", path);
 }
 
 TextureGL::~TextureGL()
 {
     glDeleteTextures(1, &m_id);
+
+    printf("destroyed texture [%s]\n", getPath());
 }
 
 void TextureGL::bind()

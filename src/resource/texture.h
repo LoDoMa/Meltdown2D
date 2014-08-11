@@ -23,9 +23,14 @@
 class Texture: public Resource
 {
 public:
+    Texture(const char* m_fpath);
     virtual ~Texture();
 
     virtual void bind();
+
+    inline const char* getPath() const { return m_fpath; }
+private:
+    const char* m_fpath;
 };
 
 
@@ -37,7 +42,7 @@ public:
 class TextureGL: public Texture
 {
 public:
-    TextureGL(const char* fpath);
+    TextureGL(const char* path);
     ~TextureGL();
 
     void bind();

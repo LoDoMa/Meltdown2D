@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-#include "resource.h"
+#include "meltdown.h"
 
-Resource::Resource()
+LimeException::LimeException(const char* msg)
+:   m_msg(msg)
 {
 
 }
 
-Resource::~Resource()
+LimeException::~LimeException() throw()
 {
 
+}
+
+const char* LimeException::what() const throw()
+{
+    return m_msg;
 }
