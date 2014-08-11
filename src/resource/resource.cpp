@@ -14,26 +14,24 @@
  * limitations under the License.
  */
 
-#ifndef BASE_H_
-#define BASE_H_
+#include "resource.h"
 
-#include "resource/resman.h"
-
-class Engine
+Resource::Resource()
 {
-public:
-    Engine();
-    ~Engine();
 
-    void start();
-private:
-    void engineInit();
-    void gameInit();
-    void run();
-    void gameDestroy();
-    void engineDestroy();
+}
 
-    ResourceMan* m_resman;
-};
+Resource::~Resource()
+{
 
-#endif /* BASE_H_ */
+}
+
+void Resource::load()
+{
+
+}
+
+void Resource::unload()
+{
+
+}

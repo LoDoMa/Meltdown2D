@@ -14,26 +14,22 @@
  * limitations under the License.
  */
 
-#ifndef BASE_H_
-#define BASE_H_
+#ifndef MELTDOWN_H_
+#define MELTDOWN_H_
 
-#include "resource/resman.h"
+// #define MELTDOWN_WINDOWS 1
+   #define MELTDOWN_LINUX 1
+// #define MELTDOWN_OSX 1
+// #define MELTDOWN_XBOX 1
+// #define MELTDOWN_XBOX360 1
+// #define MELTDOWN_XBOXONE 1
+// #define MELTDOWN_PS 1
+// #define MELTDOWN_PS3 1
+// #define MELTDOWN_ANDROID 1
+// #define MELTDOWN_IOS 1
 
-class Engine
-{
-public:
-    Engine();
-    ~Engine();
+   #define MELTDOWN_OPENGL 1
+// #define MELTDOWN_GLES 1
+// #define MELTDOWN_DIRECTX 1
 
-    void start();
-private:
-    void engineInit();
-    void gameInit();
-    void run();
-    void gameDestroy();
-    void engineDestroy();
-
-    ResourceMan* m_resman;
-};
-
-#endif /* BASE_H_ */
+#endif /* MELTDOWN_H_ */

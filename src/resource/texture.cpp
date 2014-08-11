@@ -14,26 +14,33 @@
  * limitations under the License.
  */
 
-#ifndef BASE_H_
-#define BASE_H_
+#include "texture.h"
 
-#include "resource/resman.h"
-
-class Engine
+Texture::~Texture()
 {
-public:
-    Engine();
-    ~Engine();
 
-    void start();
-private:
-    void engineInit();
-    void gameInit();
-    void run();
-    void gameDestroy();
-    void engineDestroy();
+}
 
-    ResourceMan* m_resman;
-};
+void Texture::bind()
+{
 
-#endif /* BASE_H_ */
+}
+
+#if defined(MELTDOWN_OPENGL)
+
+TextureGL::TextureGL(const char* fpath)
+{
+    glGenTextures(1, &m_id);
+}
+
+TextureGL::~TextureGL()
+{
+    glDeleteTextures(1, &m_id);
+}
+
+void TextureGL::bind()
+{
+    glBindTexture(GL_TEXTURE_2D, m_id);
+}
+
+#endif

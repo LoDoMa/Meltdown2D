@@ -14,26 +14,37 @@
  * limitations under the License.
  */
 
-#ifndef BASE_H_
-#define BASE_H_
+#ifndef TEXTURE_H_
+#define TEXTURE_H_
 
-#include "resource/resman.h"
+#include "resource.h"
+#include "../meltdown.h"
 
-class Engine
+class Texture: public Resource
 {
 public:
-    Engine();
-    ~Engine();
+    virtual ~Texture();
 
-    void start();
-private:
-    void engineInit();
-    void gameInit();
-    void run();
-    void gameDestroy();
-    void engineDestroy();
-
-    ResourceMan* m_resman;
+    virtual void bind();
 };
 
-#endif /* BASE_H_ */
+
+
+#if defined(MELTDOWN_OPENGL)
+
+#include "GL/glew.h"
+
+class TextureGL: public Texture
+{
+public:
+    TextureGL(const char* fpath);
+    ~TextureGL();
+
+    void bind();
+private:
+    GLuint m_id;
+};
+
+#endif
+
+#endif /* TEXTURE_H_ */

@@ -19,6 +19,7 @@
 #include <cstdio>
 
 Engine::Engine()
+: m_resman(0)
 {
     
 }
@@ -40,6 +41,8 @@ void Engine::start()
 void Engine::engineInit()
 {
     printf("engine stage - engine init - started\n");
+
+    m_resman = new ResourceMan();
 
     printf("engine stage - engine init - finished\n");
 }
@@ -69,5 +72,7 @@ void Engine::engineDestroy()
 {
     printf("engine stage - engine destroy - started\n");
     
+    delete m_resman;
+
     printf("engine stage - engine destroy - finished\n");
 }

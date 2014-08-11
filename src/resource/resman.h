@@ -14,26 +14,35 @@
  * limitations under the License.
  */
 
-#ifndef BASE_H_
-#define BASE_H_
+#ifndef RESMAN_H_
+#define RESMAN_H_
 
-#include "resource/resman.h"
+#include <stdint.h>
+#include <map>
 
-class Engine
+#include "resource.h"
+#include "texture.h"
+#include "sound.h"
+
+typedef uint32_t resID;
+
+class ResourceMan
 {
 public:
-    Engine();
-    ~Engine();
+    enum ResourceType
+    {
+        TEXTURE,
+        SOUND,
+    };
 
-    void start();
+    ResourceMan();
+    ~ResourceMan();
+
+    resID loadResource(ResourceType restype, const char* fpath);
+    void unloadResource(resID id);
 private:
-    void engineInit();
-    void gameInit();
-    void run();
-    void gameDestroy();
-    void engineDestroy();
-
-    ResourceMan* m_resman;
+    resID m_idctr;
+    std::map<resID, Resource*> m_resources;
 };
 
-#endif /* BASE_H_ */
+#endif /* RESMAN_H_ */

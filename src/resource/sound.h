@@ -14,26 +14,16 @@
  * limitations under the License.
  */
 
-#ifndef BASE_H_
-#define BASE_H_
+#ifndef SOUND_H_
+#define SOUND_H_
 
-#include "resource/resman.h"
+#include "resource.h"
 
-class Engine
+class Sound: public Resource
 {
 public:
-    Engine();
-    ~Engine();
-
-    void start();
-private:
-    void engineInit();
-    void gameInit();
-    void run();
-    void gameDestroy();
-    void engineDestroy();
-
-    ResourceMan* m_resman;
+    Sound(const char* fpath);
+    ~Sound();
 };
 
-#endif /* BASE_H_ */
+#endif /* SOUND_H_ */
