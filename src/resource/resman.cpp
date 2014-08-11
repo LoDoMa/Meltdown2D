@@ -24,7 +24,7 @@
 
 ResourceMan::ResourceMan()
 {
-    m_idctr = 1;
+    m_idctr = 0;
 
     printf("resource manager created\n");
 }

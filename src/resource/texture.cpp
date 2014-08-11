@@ -17,11 +17,13 @@
 #include "texture.h"
 
 #include <cstdio>
+#include "../system/oshelp.h"
 
 Texture::Texture(const char* fpath)
 : m_fpath(fpath)
 {
-
+    if (!oshelp::fileExists(fpath))
+        throw LimeException("failed to load texture - file not found");
 }
 
 Texture::~Texture()
